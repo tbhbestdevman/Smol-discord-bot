@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Dashboard</h1>
+    </header>
+    <main>
+        <h2>View 7</h2>
+        <div id="feature-container">
+            <% features.forEach(function(feature) { %>
+                <div class="feature">
+                    <h3><%= feature.name %></h3>
+                    <p><%= feature.description %></p>
+                    <button id="<%= feature._id %>" class="toggle-feature">Toggle Feature</button>
+                </div>
+            <% }); %>
+        </div>
+    </main>
+    <script src="/js/script.js"></script>
+    <script>
+        document.querySelectorAll('.toggle-feature').forEach(button => {
+            button.addEventListener('click', function() {
+                const featureId = this.id;
+                fetch(`/api/features/${featureId}/toggle`, {
+                    method: 'POST'
+                }).then(response => {
+                    if (response.ok) {
+                        this.classList.toggle('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
