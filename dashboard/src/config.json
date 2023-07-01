@@ -1,0 +1,4 @@
+{
+  "dashboardPort": 3000,
+  "mongoDBConnectionString": "mongodb+srv://<username>:<password>@cluster0.mongodb.net/<dbname>?retryWrites=true&w=majority"
+}
